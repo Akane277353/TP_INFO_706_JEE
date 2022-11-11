@@ -1,0 +1,21 @@
+apply plugin: 'ear'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'idea'
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    // You can declare any Maven/Ivy/file repository here.
+    mavenCentral()
+}
+
+dependencies {
+    //deploy project(':CompteEjb')
+	//deploy project(':CompteWeb')
+    deploy project(path: ':ParkingEJB', configuration: 'archives')
+	deploy project(path: ':ParkingWEB', configuration: 'archives')
+}
+
+eclipse.wtp.facet { 
+    //facet name: 'jst.ear', type: 'fixed'
+    facet name: 'jst.ear', version: '8.0'
+}

@@ -1,0 +1,20 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+}
+
+repositories {
+    mavenCentral()
+}
+
+// configuration encodage pour IntelliJ
+idea {
+  project {
+    ipr {
+      withXml { xmlProvider ->
+        def encoding = xmlProvider.asNode().component.find { it.@name == "Encoding" }
+        encoding.appendNode("file", [url: "PROJECT", charset: "UTF-8"])
+      }
+    }
+  }
+}
